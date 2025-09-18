@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Luas</title>
+    <script type="text/javascript">
+        // Fungsi untuk menghitung luas persegi panjang
+        function hitungLuasPersegiPanjang(panjang, lebar) {
+            return panjang * lebar;
+        }
+
+        // Fungsi untuk menghitung luas bujur sangkar
+        function hitungLuasBujurSangkar(sisi) {
+            return sisi * sisi;
+        }
+
+        // Fungsi untuk menghitung luas segitiga
+        function hitungLuasSegitiga(alas, tinggi) {
+            return 0.5 * alas * tinggi;
+        }
+
+        // Menggunakan fungsi dan menampilkan hasilnya
+        window.onload = function() {
+            var panjang = 10;  // Panjang persegi panjang
+            var lebar = 5;     // Lebar persegi panjang
+            var sisi = 4;      // Sisi bujur sangkar
+            var alas = 6;      // Alas segitiga
+            var tinggi = 8;    // Tinggi segitiga
+
+            // Menghitung luas
+            var luasPersegiPanjang = hitungLuasPersegiPanjang(panjang, lebar);
+            var luasBujurSangkar = hitungLuasBujurSangkar(sisi);
+            var luasSegitiga = hitungLuasSegitiga(alas, tinggi);
+
+            // Menampilkan hasil perhitungan
+            document.write("<h2>Perhitungan Luas</h2>");
+            document.write("<p>Luas Persegi Panjang (panjang * lebar): " + luasPersegiPanjang + " satuan luas</p>");
+            document.write("<p>Luas Bujur Sangkar (sisi * sisi): " + luasBujurSangkar + " satuan luas</p>");
+            document.write("<p>Luas Segitiga (0.5 * alas * tinggi): " + luasSegitiga + " satuan luas</p>");
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
