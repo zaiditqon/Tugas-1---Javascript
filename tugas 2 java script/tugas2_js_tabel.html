@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tugas 2 - Javascript | Tabel Gaji Pegawai</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { margin: 32px; }
+    h1 { font-size: 20px; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { background: #111827; color: white; padding: 10px; text-align: left; }
+    tbody td { border: 1px solid #e5e7eb; padding: 10px; }
+    tfoot td { background: #f3f4f6; font-weight: bold; padding: 12px; border: 1px solid #e5e7eb; }
+    .right { text-align: right; }
+    .muted { color: #6b7280; font-size: 12px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    code { background: #f9fafb; border: 1px solid #e5e7eb; padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Tugas 2 — Javascript: Cetak Data Pegawai Berbentuk Tabel</h1>
+
+  <div class="card muted" style="margin-bottom:16px;">
+    <div><strong>Petunjuk:</strong> Ubah variabel di bagian <code>// INPUT DATA</code> untuk data lainnya.</div>
+  </div>
+
+  <table id="tabelGaji">
+    <thead>
+      <tr>
+        <th>Nama Pegawai</th>
+        <th>Umur</th>
+        <th>Jabatan</th>
+        <th>Status</th>
+        <th class="right">Gaji Pokok</th>
+        <th class="right">Tunjangan Jabatan (15%)</th>
+        <th class="right">BPJS (10%)</th>
+        <th class="right">Tunjangan Keluarga (20% jika menikah)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- baris data akan diisi oleh JavaScript -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">Total Gaji</td>
+        <td class="right" id="totalGajiCell">-</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    // ================================
+    // INPUT DATA
+    // ================================
+    const nama = "dodi prayodi";
+    const umur = 25;
+    const jabatan = "manajer";   // opsi lain: "asisten manajer", "staff"
+    const status = "menikah";    // opsi lain: "belum menikah"
+
+    // ================================
+    // LOGIKA PERHITUNGAN
+    // ================================
+
+    // 1) Gaji Pokok (gunakan IF sesuai instruksi)
+    let gajiPokok = 0;
+    if (jabatan.toLowerCase() === "manajer") {
+      gajiPokok = 15000000; // 15 jt
+    } else if (jabatan.toLowerCase() === "asisten manajer") {
+      gajiPokok = 10000000; // 10 jt
+    } else if (jabatan.toLowerCase() === "staff") {
+      gajiPokok = 5000000;  // 5 jt
+    } else {
+      gajiPokok = 0;        // jika jabatan tidak dikenal
+    }
+
+    // 2) Tunjangan Jabatan: 15% dari gapok
+    const tjJabatan = 0.15 * gajiPokok;
+
+    // 3) BPJS: 10% dari gapok
+    const bpjs = 0.10 * gajiPokok;
+
+    // 4) Tunjangan Keluarga (ternary): 20% jika menikah
+    const tjKeluarga = (status.toLowerCase() === "menikah") ? 0.20 * gajiPokok : 0;
+
+    // 5) Total Gaji: jumlahkan seluruh elemen gaji
+    const totalGaji = gajiPokok + tjJabatan + bpjs + tjKeluarga;
+
+    // ================================
+    // RENDER TABEL
+    // ================================
+    const fmt = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 });
+
+    const tbody = document.querySelector("#tabelGaji tbody");
+    const tr = document.createElement("tr");
+
+    function td(text, cls) {
+      const el = document.createElement("td");
+      if (cls) el.className = cls;
+      el.textContent = text;
+      return el;
+    }
+
+    tr.appendChild(td(nama));
+    tr.appendChild(td(String(umur)));
+    tr.appendChild(td(capitalize(jabatan)));
+    tr.appendChild(td(capitalize(status)));
+    tr.appendChild(td(fmt.format(gajiPokok), "right"));
+    tr.appendChild(td(fmt.format(tjJabatan), "right"));
+    tr.appendChild(td(fmt.format(bpjs), "right"));
+    tr.appendChild(td(fmt.format(tjKeluarga), "right"));
+    tbody.appendChild(tr);
+
+    document.getElementById("totalGajiCell").textContent = fmt.format(totalGaji);
+
+    function capitalize(str) {
+      return str.replace(/\b\w/g, c => c.toUpperCase());
+    }
+  </script>
+</body>
+</html>
