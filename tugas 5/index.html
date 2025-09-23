@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="id"><body>
+<button id="tampil">Tampilkan</button>
+<button id="tambah">Tambah Monitor</button>
+<button id="hapus">Hapus ID 2 & 4</button>
+<pre id="out"></pre>
+
+<script>
+// Data & fungsi-fungsi PUNYAMU persis sama:
+let produkList = [
+  { id: 1, nama: "Laptop", harga: 12000000 },
+  { id: 2, nama: "Smartphone", harga: 5000000 },
+  { id: 3, nama: "Tablet", harga: 7000000 },
+  { id: 4, nama: "Headphone", harga: 1500000 },
+  { id: 5, nama: "Keyboard", harga: 800000 }
+];
+
+function tambahProduk(id, nama, harga) {
+  produkList = [...produkList, { id, nama, harga }];
+  console.log(`Produk "${nama}" berhasil ditambahkan!`);
+}
+
+function hapusProduk(...id) {
+  produkList = produkList.filter(p => !id.includes(p.id));
+  console.log(`Produk dengan ID ${id.join(", ")} berhasil dihapus!`);
+}
+
+const rp = n => `Rp ${n.toLocaleString("id-ID")}`;
+function tampilkanProduk() {
+  const out = document.getElementById("out");
+  out.textContent = "=== Daftar Produk ===\n" + 
+    produkList.map(({ id, nama, harga }) => `${id}. ${nama} - ${rp(harga)}`).join("\n");
+}
+
+// >>> Event Listener beneran:
+document.getElementById("tampil").addEventListener("click", tampilkanProduk);
+document.getElementById("tambah").addEventListener("click", () => { tambahProduk(6,"Monitor",2500000); tampilkanProduk(); });
+document.getElementById("hapus").addEventListener("click", () => { hapusProduk(2,4); tampilkanProduk(); });
+
+// tampil awal
+tampilkanProduk();
+</script>
+</body></html>
