@@ -1,0 +1,74 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Algoritma",
+      "author": "H. Kurnia",
+      "price": 120000,
+      "stock": 12,
+      "genre": "Teknik"
+    },
+    {
+      "id": 2,
+      "title": "Filsafat Kopi",
+      "author": "D. Dee",
+      "price": 90000,
+      "stock": 7,
+      "genre": "Fiksi"
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "Fiksi"
+    },
+    {
+      "id": 2,
+      "name": "Teknologi"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Dee Lestari",
+      "country": "Indonesia"
+    },
+    {
+      "id": 2,
+      "name": "Yuval Noah Harari",
+      "country": "Israel"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "month": "Jan",
+      "amount": 32
+    },
+    {
+      "id": 2,
+      "month": "Feb",
+      "amount": 41
+    },
+    {
+      "id": 3,
+      "month": "Mar",
+      "amount": 27
+    },
+    {
+      "id": 4,
+      "month": "Apr",
+      "amount": 50
+    },
+    {
+      "id": 5,
+      "month": "Mei",
+      "amount": 39
+    },
+    {
+      "id": 6,
+      "month": "Jun",
+      "amount": 61
+    }
+  ]
+}
